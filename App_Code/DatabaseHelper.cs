@@ -44,8 +44,18 @@ namespace BinaryIntellect.DataAccess
                 case Providers.ODBC:
                     objFactory = OdbcFactory.Instance;
                     break;
-                case Providers.ConfigDefined:
+                case Providers.ConfigDefined:                                             
                     string providername = ConfigurationManager.ConnectionStrings["MontavoConnectionString"].ProviderName;
+                    // read connectionstring configured for Azure website
+                    string azureconnectionstring = Environment.GetEnvironmentVariable("SQLAZURECONNSTR_DefaultConnection");
+                    if (!String.IsNullOrEmpty(azureconnectionstring))
+                    {
+                        // we're running on Azure
+                        strConnectionString = azureconnectionstring;
+                        providername = "System.Data.SqlClient";
+                    }
+                    if (String.IsNullOrEmpty(providername))
+                        throw new Exception("Unable to find either a local config MontavoConnectionString or Azure website connectionstring DefaultConnection setting");
                     switch (providername)
                     {
                         case "System.Data.SqlClient":

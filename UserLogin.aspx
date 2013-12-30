@@ -66,9 +66,13 @@
 							<div class="input-prepend span6 center" title="Role" data-rel="tooltip">
 								<span class="add-on" style="margin-right: 1px;">
                                <i class="icon-question-sign"></i></span>
-                                <asp:DropDownList ID="ddlRoles" class="dropdown"  runat="server" DataSourceID="SqlDataSource1" DataTextField="fldRoleName" DataValueField="fldRoleID">
+                                <%--<asp:DropDownList ID="ddlRoles" class="dropdown"  runat="server" DataSourceID="SqlDataSource1" DataTextField="fldRoleName" DataValueField="fldRoleID">--%>
+                                <asp:DropDownList ID="ddlRoles" class="dropdown"  runat="server" >
+                                    <asp:ListItem Enabled="True" Selected="False" Text="Publisher" Value="1" />
+                                    <asp:ListItem Enabled="True" Selected="False" Text="Advertiser" Value="2" />            
+                                    <asp:ListItem Enabled="True" Selected="False" Text="Developer" Value="3" />
                                 </asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MontavoConnectionString %>" SelectCommand="SELECT * FROM [tblRoles]"></asp:SqlDataSource>
+                                <%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MontavoConnectionString %>" SelectCommand="SELECT * FROM [tblRoles]"></asp:SqlDataSource>--%>
 							</div>
 							<div class="clearfix"></div>
 							<div class="input-prepend">
